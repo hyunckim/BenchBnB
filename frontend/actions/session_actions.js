@@ -2,22 +2,22 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 import * as SessionAPIUtil from '../util/session_api_util';
 
-export const signup = user => dispatch => ({
+export const signup = user => dispatch => (
   SessionAPIUtil.signup(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
     .fail(error => dispatch(receiveErrors(error.responseJSON)))
-});
+);
 
-export const login = user => dispatch => ({
+export const login = user => dispatch => (
   SessionAPIUtil.login(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
     .fail(error => dispatch(receiveErrors(error.responseJSON)))
-});
+);
 
-export const logout = () => dispatch => ({
+export const logout = () => dispatch => (
   SessionAPIUtil.logout()
-    .then(() => receiveCurrentUser(null))
-})
+    .then(() => dispatch(receiveCurrentUser(null)))
+);
 
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
