@@ -5,7 +5,10 @@ import * as SessionAPIUtil from '../util/session_api_util';
 export const signup = user => dispatch => (
   SessionAPIUtil.signup(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-    .fail(error => dispatch(receiveErrors(error.responseJSON)))
+    .fail(error => {
+      debugger;
+      return dispatch(receiveErrors(error.responseJSON)
+    );})
 );
 
 export const login = user => dispatch => (
