@@ -5,18 +5,18 @@ class Greeting extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleLogOut() {
-
+    this.props.logout();
   }
 
   render() {
-    let { currentUser } = this.props;
-    if (currentUser) {
+    if (this.props.currentUser) {
       return (
         <div>
-          <h3>Welcome to your homepage { currentUser.username }!</h3>
+          <h3>Welcome to your homepage { this.props.currentUser.username }!</h3>
           <button onClick={this.handleLogOut}>Log Out</button>
         </div>
       );

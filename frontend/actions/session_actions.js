@@ -6,7 +6,6 @@ export const signup = user => dispatch => (
   SessionAPIUtil.signup(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
     .fail(error => {
-      debugger;
       return dispatch(receiveErrors(error.responseJSON)
     );})
 );
@@ -14,7 +13,9 @@ export const signup = user => dispatch => (
 export const login = user => dispatch => (
   SessionAPIUtil.login(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser)))
-    .fail(error => dispatch(receiveErrors(error.responseJSON)))
+    .fail(error => {
+      return dispatch(receiveErrors(error.responseJSON)
+    );})
 );
 
 export const logout = () => dispatch => (
